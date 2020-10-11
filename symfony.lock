@@ -1,4 +1,5 @@
 {
+>>>>>>> 3ed048a... add doctrine code sniffer php unit
     "brick/math": {
         "version": "0.9.1"
     },
