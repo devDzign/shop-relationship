@@ -1,3 +1,4 @@
+        $form->handleRequest($request);
 <?php
 
 namespace App\Controller;
