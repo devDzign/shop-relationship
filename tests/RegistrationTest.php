@@ -40,22 +40,22 @@ class RegistrationTest extends WebTestCase
     public function provideRoles(): Generator
     {
         yield ['producer', [
-            "registration[email]" => "email@mail.com",
-            "registration[displayName]" => "email@mail.com",
+            "registration[email]" => "email@email.com",
+            "registration[displayName]" => "email@email.com",
             "registration[plainPassword]" => "password",
             "registration[firstName]" => "John",
             "registration[lastName]" => "Doe"
         ]];
         yield ['producer', [
-            "registration[email]" => "email@mail.com",
-            "registration[displayName]" => "email@mail.com",
+            "registration[email]" => "email@email.com",
+            "registration[displayName]" => "email@email.com",
             "registration[plainPassword]" => "password",
             "registration[firstName]" => "John",
             "registration[lastName]" => "Doe",
         ]];
         yield ['customer', [
-            "registration[email]" => "email@mail.com",
-            "registration[displayName]" => "email@mail.com",
+            "registration[email]" => "email@email.com",
+            "registration[displayName]" => "email@email.com",
             "registration[plainPassword]" => "password",
             "registration[firstName]" => "John",
             "registration[lastName]" => "Doe"

@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Repository\UserRepository;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="utilisateur")
+ * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"producer"="App\Entity\Producer", "customer"="App\Entity\Customer"})
@@ -82,11 +82,6 @@ abstract class User implements UserInterface
      * @var \DateTimeImmutable
      */
     protected \DateTimeImmutable $registerAt;
-
-    /**
-     * @ORM\Embedded(class="ForgottenPassword")
-     */
-    protected ?ForgottenPassword $forgottenPassword;
 
 
     public function __construct()
@@ -285,26 +280,5 @@ abstract class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function hasForgotHisPassword(): void
-    {
-        $this->forgottenPassword = new ForgottenPassword();
-    }
-
-    /**
-     * @return ForgottenPassword|null
-     */
-    public function getForgottenPassword(): ?ForgottenPassword
-    {
-        return $this->forgottenPassword;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFullName(): string
-    {
-        return sprintf("%s %s", $this->firstname, $this->lastname);
     }
 }
