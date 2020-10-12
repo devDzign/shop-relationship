@@ -1,3 +1,4 @@
+
 framework:
     messenger:
         default_bus: command.bus
