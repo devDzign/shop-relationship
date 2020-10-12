@@ -2,4 +2,4 @@ index:
     path: /
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
     defaults:
-      templates: ui/home.html.twig
+      template: ui/index.html.twig
