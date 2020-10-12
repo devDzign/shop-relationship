@@ -2,14 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>
+        {% block title %}
+            Welcome!
+        {% endblock %}
+    </title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
-{% block body %}
-{% endblock %}
+
+<header id="header">
+    {{ include('ui/components/header.html.twig') }}
+</header>
+
+<div class="container py-5">
+    {% block body %}
+    {% endblock %}
+</div>
 
 {{ encore_entry_script_tags('app') }}
 
