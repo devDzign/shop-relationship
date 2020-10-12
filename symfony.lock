@@ -424,6 +424,12 @@
     },
     "symfony/process": {
         "version": "v5.1.7"
+<<<<<<< HEAD
+=======
+    },
+    "symfony/profiler-pack": {
+        "version": "v1.0.5"
+>>>>>>> 0c65e56... fix(add rabbitmq):
     },
     "symfony/property-access": {
         "version": "v5.1.7"

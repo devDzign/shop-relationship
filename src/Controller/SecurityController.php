@@ -12,7 +12,10 @@ use App\Form\ResetPasswordType;
 use App\Message\Command\ResetPasswordEmail;
 use App\Repository\UserRepository;
 use App\Service\EmailNotification;
+<<<<<<< HEAD
 use App\Service\LongCalcul;
+=======
+>>>>>>> 0c65e56... fix(add rabbitmq):
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -72,6 +75,7 @@ class SecurityController extends AbstractController
      * @return Response
      * @Route("/login", name="security_login")
      */
+<<<<<<< HEAD
     public function login(
         AuthenticationUtils $authenticationUtils,
         CacheInterface $cache,
@@ -88,6 +92,10 @@ class SecurityController extends AbstractController
         });
 
         $stopwatch->stop("test log calcule");
+=======
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+>>>>>>> 0c65e56... fix(add rabbitmq):
         return $this->render(
             "ui/security/login.html.twig",
             [
