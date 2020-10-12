@@ -44,7 +44,7 @@ class UserFixtures extends Fixture
             ->setDisplayName('customer')
             ->setEmail('customer@mail.com');
 
-        $manager->persist($customer);
+        $manager->persist($producer);
 
         $manager->flush();
     }
