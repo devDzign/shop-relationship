@@ -78,8 +78,7 @@
             "php bin/console d:d:d --if-exists --force --env=test",
             "php bin/console d:d:c --env=test",
             "php bin/console d:s:u -f --env=test",
-            "php bin/console d:f:l -n --env=test",
-            "vendor\\bin\\simple-phpunit"
+            "php bin/console d:f:l -n --env=test"
         ],
         "prepare-dev": [
             "php bin/console d:d:d --if-exists --force --env=dev",
