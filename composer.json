@@ -13,6 +13,7 @@
         "limenius/react-renderer": "^5.0",
         "ramsey/uuid": "^4.1",
         "ramsey/uuid-doctrine": "^1.6",
+        "sensio/framework-extra-bundle": "^5.6",
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/console": "5.1.*",
         "symfony/doctrine-bridge": "5.1.*",
