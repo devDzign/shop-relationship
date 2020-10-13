@@ -13,7 +13,7 @@ class WelcomeDevController extends AbstractController
     /**
      * @Route("/welcome", name="welcome_dev")
      */
-    public function welcome()
+    public function welcome(MessageBusInterface $queryBus)
     {
 
         $envelope = $queryBus->dispatch(new GetTotalUsersCount());
