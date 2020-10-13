@@ -6,13 +6,17 @@
 <div class="container">
     <div class="row">
         <div class="col-12" id="welcome-app">
-            
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block javascripts %}
+        {{ parent() }}
+        <script>
+            window.REP_LOG_APP_PROPS = {{ var_react|json_encode|raw }}
+        </script>
+
     {{ encore_entry_script_tags('welcome-app') }}
 {% endblock %}
 
