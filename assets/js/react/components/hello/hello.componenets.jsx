@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Hello = (props) => {
-    const text = 'Bonjour à tous';
+    const text = 'Bonjour à tous {{ var_react }}';
     const {isHeartShow} = props
 
     return (
