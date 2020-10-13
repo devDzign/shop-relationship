@@ -38,3 +38,7 @@ services:
         resource: '../src/MessageHandler/Query'
         autoconfigure: false
         tags: [ { name: messenger.message_handler, bus: query.bus } ]
+
+    App\EntityListener\:
+        resource: '../src/EntityListener/'
+        tags: [ 'doctrine.orm.entity_listener' ]
