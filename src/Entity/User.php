@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\UserRepository;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -82,6 +83,11 @@ abstract class User implements UserInterface
      * @var \DateTimeImmutable
      */
     protected \DateTimeImmutable $registerAt;
+
+    /**
+     * @ORM\Embedded(class="ForgottenPassword")
+     */
+    protected ?ForgottenPassword $forgottenPassword;
 
 
     public function __construct()
@@ -280,5 +286,26 @@ abstract class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function hasForgotHisPassword(): void
+    {
+        $this->forgottenPassword = new ForgottenPassword();
+    }
+
+    /**
+     * @return ForgottenPassword|null
+     */
+    public function getForgottenPassword(): ?ForgottenPassword
+    {
+        return $this->forgottenPassword;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return sprintf("%s %s", $this->firstname, $this->lastname);
     }
 }
