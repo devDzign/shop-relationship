@@ -34,6 +34,6 @@ class EmailExistsValidator extends ConstraintValidator
 
         /** @var EmailExists $constraint */
 
-        $this->context->buildViolation($constraint->message)->addViolation();
+        $this->context->buildViolation($constraint->message)->setParameter('{{ value }}', $value)->addViolation();
     }
 }
