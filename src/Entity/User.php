@@ -13,7 +13,7 @@ use App\Repository\UserRepository;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Entity
+ * @ORM\Table(name="users_table")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"producer"="App\Entity\Producer", "customer"="App\Entity\Customer"})
