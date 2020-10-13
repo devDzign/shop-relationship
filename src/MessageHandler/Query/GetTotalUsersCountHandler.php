@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\MessageHandler\Query;
-
 
 use App\Message\Query\GetTotalUsersCount;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;

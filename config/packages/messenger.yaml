@@ -9,7 +9,7 @@ framework:
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
              async:
-                 dns: '%env(MESSENGER_TRANSPORT_DSN)%'
+                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
                  options:
                    exchange:
                      name: messages_high_priority

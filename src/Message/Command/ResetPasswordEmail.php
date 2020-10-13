@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Message\Command;
-
 
 use Ramsey\Uuid\UuidInterface;
 
@@ -22,5 +20,4 @@ class ResetPasswordEmail
     {
         $this->userId = $userId;
     }
-
 }
