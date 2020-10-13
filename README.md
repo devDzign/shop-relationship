@@ -1,0 +1,1 @@
+![Tests](https://github.com/devDzign/shop-relationship/workflows/Tests/badge.svg)
