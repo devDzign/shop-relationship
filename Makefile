@@ -1,3 +1,4 @@
+CONSOLE= $(SF) console
 DC=docker-compose
 DK=docker
 CONTAINER= php
