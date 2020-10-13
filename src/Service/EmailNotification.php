@@ -39,8 +39,7 @@ class EmailNotification
         string $fullName,
         string $from,
         string $to = 'hello@producteurauconsommateur.com'
-    ): void
-    {
+    ): void {
         $email = (new TemplatedEmail())
             ->to(new Address($from, $fullName))
             ->from($to)
