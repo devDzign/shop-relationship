@@ -111,8 +111,14 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.1.1"
     },
+    "limenius/react-renderer": {
+        "version": "v5.0.3"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
+    },
+    "nacmartin/phpexecjs": {
+        "version": "v3.0.0"
     },
     "nikic/php-parser": {
         "version": "v4.10.2"
@@ -197,6 +203,18 @@
     },
     "symfony/css-selector": {
         "version": "v5.1.7"
+    },
+    "symfony/debug-bundle": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "f8863cbad2f2e58c4b65fa1eac892ab189971bea"
+        },
+        "files": [
+            "./config/packages/dev/debug.yaml"
+        ]
     },
     "symfony/dependency-injection": {
         "version": "v5.1.7"
@@ -370,6 +388,9 @@
     },
     "symfony/polyfill-uuid": {
         "version": "v1.18.1"
+    },
+    "symfony/process": {
+        "version": "v5.1.7"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.5"
