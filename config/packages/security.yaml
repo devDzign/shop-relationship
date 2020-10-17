@@ -1,4 +1,3 @@
-            anonymous: true
 security:
     encoders:
         App\Entity\User:
