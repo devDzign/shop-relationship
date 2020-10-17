@@ -1,5 +1,6 @@
 CONSOLE= $(SF) console
 DC=docker-compose
+DK=docker
 CONTAINER= php
 SF= symfony
 CONSOLE= $(SF) console
@@ -72,6 +73,12 @@ dstop: require-files
 sps: ## Docker ps
 dps: require-files
 	$(DC) ps
+
+getallcontainer: ## Get all containers docker
+	$(DK) ps -a -q
+
+dstopall: ## Docker stop all containers
+	$(DK) stop getallcontainer
 ##
 ## Composer
 ##---------------------------------------------------------------------------

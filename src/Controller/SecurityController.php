@@ -12,6 +12,7 @@ use App\Form\ResetPasswordType;
 use App\Message\Command\ResetPasswordEmail;
 use App\Repository\UserRepository;
 use App\Service\EmailNotification;
+use App\Service\LongCalcul;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Stopwatch\Stopwatch;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class SecurityController extends AbstractController
 {
@@ -68,8 +72,22 @@ class SecurityController extends AbstractController
      * @return Response
      * @Route("/login", name="security_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
+    public function login(
+        AuthenticationUtils $authenticationUtils,
+        CacheInterface $cache,
+        LongCalcul $longCalcul,
+        Stopwatch $stopwatch
+    ): Response {
+
+        $stopwatch->start("test log calcule");
+
+        dump($cache);
+        $result =  $cache->get("long_calcul", function (ItemInterface $item) use ($longCalcul) {
+
+            return $longCalcul->getLongCalcul();
+        });
+
+        $stopwatch->stop("test log calcule");
         return $this->render(
             "ui/security/login.html.twig",
             [
