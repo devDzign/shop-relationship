@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -18,6 +19,8 @@ class Producer extends User
      * @ORM\OneToOne(targetEntity=Farm::class, inversedBy="producer", cascade={"persist", "remove"})
      */
     private $farm;
+
+
 
 
     public function getRoles(): array
