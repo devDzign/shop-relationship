@@ -58,7 +58,7 @@ jobs:
           composer prepare-test
 
       - name: Run functional tests
-        run: php vendor/bin/simple-phpunit
+        run: GOOGLE_MAP_API_KEY=${{ secrets.GOOGLE_MAP_API_KEY }} php vendor/bin/simple-phpunit
 
       - name: Analyze coding style
         run: php vendor/bin/phpcs

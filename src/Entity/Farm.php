@@ -6,6 +6,7 @@ use App\Repository\FarmRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FarmRepository::class)
@@ -34,6 +35,12 @@ class Farm
      * @ORM\OneToOne(targetEntity=Producer::class, mappedBy="farm")
      */
     private $producer;
+
+    /**
+     * @ORM\Embedded(class="Address")
+     * @Assert\Valid()
+     */
+    private ?Address $address = null;
 
 
 
@@ -82,5 +89,21 @@ class Farm
         }
 
         return $this;
+    }
+
+    /**
+     * @return Address|null
+     */
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param Address|null $address
+     */
+    public function setAddress(?Address $address): void
+    {
+        $this->address = $address;
     }
 }
