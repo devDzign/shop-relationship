@@ -9,60 +9,17 @@
 
             {% if is_granted("ROLE_USER") %}
                 <li class="nav-item dropdown">
-                    <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                    >
-                        Mon compte
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SMon compte
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if is_granted("ROLE_PRODUCER") %}
-                            <a class="dropdown-item"
-                               href="{{ path("farm_update") }}"
-                            >
-                                <p class="max_width">Modifier mon exploitation</p>
-                            </a>
-                            <a class="dropdown-item "
-                                     href="{{ path("product_index") }}"
-                            >
-                                Mes produits
-                            </a>
+                            <a class="dropdown-item" href="{{ path("farm_update") }}">Modifier mon exploitation</a>
+                            <a class="dropdown-item" href="{{ path("product_index") }}">Mes produits</a>
                         {% elseif is_granted("ROLE_CUSTOMER") %}
-                            <a
-                                    class="dropdown-item"
-                                    {# href="{{ path("cart_index") }}" #}
-                            >
-                                Mon panier
-                            </a>
-                            <a
-                                    class="dropdown-item"
-                                    {# href="{{ path("order_history") }}" #}
-                            >
-                                Mes commandes
-                            </a>
+                            <a class="dropdown-item" href="{{ path("cart_index") }}">Mon panier</a>
                         {% endif %}
-                        <a
-                                class="dropdown-item"
-                                {# href="{{ path("user_edit_password") }}" #}
-                        >
-                            Mot de passe
-                        </a>
-                        <a
-                                class="dropdown-item"
-                                {# href="{{ path("user_edit_password") }}" #}
-                        >
-                            Mes informations
-                        </a>
-                        <a class="dropdown-item"
-                           href="{{ path("security_logout") }}"
-                        >
-                            Se déconnecter
-                        </a>
+                        <a class="dropdown-item" href="{{ path("security_logout") }}">Se déconnecter</a>
                     </div>
                 </li>
             {% else %}

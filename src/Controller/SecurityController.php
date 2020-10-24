@@ -43,8 +43,16 @@ class SecurityController extends AbstractController
         UserPasswordEncoderInterface $userPasswordEncoder
     ): Response {
         $user = Producer::ROLE === $role ? new Producer() : new Customer();
-        $form = $this->createForm(RegistrationType::class, $user);
-        $form->handleRequest($request);
+
+        $form = $this->createForm(
+            RegistrationType::class,
+            $user,
+            [
+                "validation_groups" => ["Default", "password"],
+            ]
+        )
+            ->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($userPasswordEncoder->encodePassword($user, $user->getPlainPassword()));
@@ -112,8 +120,8 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-                /** @var User $user */
-                $user = $userRepository->findOneByEmail($forgottenPasswordInput->getEmail());
+            /** @var User $user */
+            $user = $userRepository->findOneByEmail($forgottenPasswordInput->getEmail());
             $user->hasForgotHisPassword();
             $this->getDoctrine()->getManager()->flush();
 
@@ -159,7 +167,14 @@ class SecurityController extends AbstractController
             $this->addFlash("danger", "Cette demande d'oubli de mot de passe n'existe pas.");
         }
 
-        $form = $this->createForm(ResetPasswordType::class, $user)->handleRequest($request);
+        $form = $this->createForm(
+            ResetPasswordType::class,
+            $user,
+            [
+            "validation_groups" => ["password"]
+            ]
+        )
+            ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(

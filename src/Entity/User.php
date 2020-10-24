@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\UserRepository;
@@ -19,7 +20,7 @@ use App\Repository\UserRepository;
  * @UniqueEntity("email")
  * @UniqueEntity("displayName")
  */
-abstract class User implements UserInterface
+abstract class User implements UserInterface, \Serializable, EquatableInterface
 {
 
     /**
@@ -67,8 +68,8 @@ abstract class User implements UserInterface
     protected string $password = "";
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(min="8")
+     * @Assert\NotBlank(groups={"password"})
+     * @Assert\Length(min="8", groups={"password"})
      * @var null|string
      */
     protected ?string $plainPassword = null;
@@ -306,5 +307,35 @@ abstract class User implements UserInterface
     public function getFullName(): string
     {
         return sprintf("%s %s", $this->firstname, $this->lastname);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email
+        ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        [
+            $this->id,
+            $this->email
+        ] = unserialize($serialized);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isEqualTo(UserInterface $user): bool
+    {
+        return $user->getUsername() === $this->getUsername();
     }
 }
