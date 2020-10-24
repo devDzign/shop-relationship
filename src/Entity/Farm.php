@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\FarmRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=FarmRepository::class)
@@ -18,33 +19,36 @@ class Farm
      * @ORM\Column(type="uuid")
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidGenerator::class)
+     * @Groups({"read"})
      */
-    private $id;
+    private ?UuidInterface $id = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"read"})
      */
-    private $name;
+    private ?string $name = "";
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description = "";
 
     /**
      * @ORM\OneToOne(targetEntity=Producer::class, mappedBy="farm")
      */
-    private $producer;
+    private ?Producer $producer = null;
 
     /**
      * @ORM\Embedded(class="Address")
      * @Assert\Valid()
+     * @Groups({"read"})
      */
     private ?Address $address = null;
 
 
 
-    public function getId(): ?Uuid
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }

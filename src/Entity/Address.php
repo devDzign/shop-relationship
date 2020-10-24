@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,11 +17,13 @@ class Address
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
+     * @Groups({"read"})
      */
     private ?string $address;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *  @Groups({"read"})
      */
     private ?string $restAddress;
 
@@ -28,18 +31,21 @@ class Address
      * @ORM\Column(type="string", length=5, nullable=true)
      * @Assert\NotBlank()
      * @Assert\Regex(pattern="/^[A-Za-z0-9]{5}$/")
+     *  @Groups({"read"})
      */
     private ?string $zipCode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
+     * @Groups({"read"})
      */
     private ?string $city;
 
     /**
      * @ORM\Embedded(class="Position")
-     * @Assert\Valid
+     * @Assert\Valid()
+     * @Groups({"read"})
      */
     private ?Position $position;
 
